@@ -32,7 +32,7 @@ const ContactForm: React.FC = () => {
             formData.append('locality', form.locality);
             formData.append('poolType', form.poolType);
             formData.append('message', form.message);
-            const accessKey = (import.meta as any)?.env?.VITE_WEB3FORMS_KEY || '48a24b41-f23e-4dac-ad5d-48f5a8a5c1a0';
+            const accessKey = (import.meta as any)?.env?.VITE_WEB3FORMS_KEY || '7c31f864-c88f-4457-8ca5-31a3f3cfce1d';
             formData.append('access_key', accessKey);
 
             const response = await fetch('https://api.web3forms.com/submit', {
