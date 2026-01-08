@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import LocalityAutocomplete from './LocalityAutocomplete';
 import DropdownMenu from './ui/DropdownMenu';
 import { useIntersectionObserver } from '../hooks';
@@ -10,9 +10,20 @@ const ContactForm: React.FC = () => {
     const [resultMessage, setResultMessage] = useState<string | null>(null);
     const ref = useIntersectionObserver();
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    };
+    const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        const { name, value } = e.target as HTMLInputElement;
+        setForm((prev) => ({ ...prev, [name]: value }));
+    }, []);
+
+    const handleLocalityChange = useCallback((value: string) => setForm((prev) => ({ ...prev, locality: value })), []);
+    const handlePoolTypeChange = useCallback((value: string) => setForm((prev) => ({ ...prev, poolType: value })), []);
+
+    const poolOptions = useMemo(() => [
+        { value: 'privada', label: 'Privada' },
+        { value: 'comunitaria', label: 'Comunitaria' },
+        { value: 'hotel', label: 'Hotel/Spa' },
+        { value: 'publica', label: 'Pública' },
+    ], []);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -83,7 +94,7 @@ const ContactForm: React.FC = () => {
                                     <label htmlFor="locality" className="block text-base font-medium text-gray-700 text-left">Localidad</label>
                                     <LocalityAutocomplete
                                         value={form.locality}
-                                        onChange={(value) => setForm({ ...form, locality: value })}
+                                        onChange={handleLocalityChange}
                                     />
                                 </div>
 
@@ -93,14 +104,9 @@ const ContactForm: React.FC = () => {
                                         <DropdownMenu
                                             id="poolType"
                                             value={form.poolType}
-                                            onChange={(value) => setForm({ ...form, poolType: value })}
+                                            onChange={handlePoolTypeChange}
                                             required
-                                            options={[
-                                                { value: 'privada', label: 'Privada' },
-                                                { value: 'comunitaria', label: 'Comunitaria' },
-                                                { value: 'hotel', label: 'Hotel/Spa' },
-                                                { value: 'publica', label: 'Pública' },
-                                            ]}
+                                            options={poolOptions}
                                         />
                                     </div>
                                 </div>

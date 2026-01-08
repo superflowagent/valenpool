@@ -21,8 +21,18 @@ const TestimonialsCarousel: React.FC = () => {
     const timeoutRef = useRef<number | null>(null);
     const regionRef = useRef<HTMLDivElement | null>(null);
     const ref = useIntersectionObserver();
+    const [inView, setInView] = useState(false);
 
     useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+        const obs = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold: 0.2 });
+        obs.observe(el);
+        return () => obs.disconnect();
+    }, [ref]);
+
+    useEffect(() => {
+        if (!inView) return; // pause autoplay when not visible
         if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
         timeoutRef.current = window.setTimeout(() => {
             setIndex((i) => (i + 1) % testimonials.length);
@@ -30,7 +40,7 @@ const TestimonialsCarousel: React.FC = () => {
         return () => {
             if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
         };
-    }, [index]);
+    }, [index, inView]);
 
     useEffect(() => {
         const onKey = (e: KeyboardEvent) => {
@@ -41,9 +51,7 @@ const TestimonialsCarousel: React.FC = () => {
         return () => window.removeEventListener('keydown', onKey);
     }, []);
 
-    const goTo = (i: number) => {
-        setIndex(i);
-    };
+    const goTo = useCallback((i: number) => setIndex(i), []);
 
     return (
         <section id="testimonials" ref={ref} className="py-16 bg-white fade-in-section">

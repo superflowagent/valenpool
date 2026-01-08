@@ -1,8 +1,20 @@
-import React, { useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
 const Navbar: React.FC = () => {
     const [open, setOpen] = useState(false);
+
+    const toggleOpen = useCallback(() => setOpen((v) => !v), []);
+    const closeMenu = useCallback(() => setOpen(false), []);
+
+    const links = useMemo(() => ([
+        { href: '#services', label: 'Servicios' },
+        { href: '#about', label: 'Quiénes Somos' },
+        { href: '#gallery', label: 'Galería' },
+        { href: '#testimonials', label: 'Testimonios' },
+        { href: '#clients', label: 'Confían en nosotros' },
+        { href: '#contact', label: 'Contacto' },
+    ]), []);
 
     return (
         <header className="sticky top-0 z-50 backdrop-blur-sm bg-white/60 border-b border-primary/10">
@@ -15,19 +27,16 @@ const Navbar: React.FC = () => {
 
                 <div className="flex items-center gap-3">
                     <nav className="hidden md:flex gap-8 text-lg font-semibold text-primary" aria-label="Menú principal">
-                        <a href="#services" className="hover:text-primary">Servicios</a>
-                        <a href="#about" className="hover:text-primary">Quiénes Somos</a>
-                        <a href="#gallery" className="hover:text-primary">Galería</a>
-                        <a href="#testimonials" className="hover:text-primary">Testimonios</a>
-                        <a href="#clients" className="hover:text-primary">Confían en nosotros</a>
-                        <a href="#contact" className="hover:text-primary">Contacto</a>
+                        {links.map((l) => (
+                            <a key={l.href} href={l.href} className="hover:text-primary">{l.label}</a>
+                        ))}
                     </nav>
 
                     <button
                         className="inline-flex items-center justify-center rounded-md p-2 text-primary md:hidden"
                         aria-label="Abrir menú"
                         aria-expanded={open}
-                        onClick={() => setOpen((v) => !v)}
+                        onClick={toggleOpen}
                     >
                         {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                     </button>
@@ -38,12 +47,9 @@ const Navbar: React.FC = () => {
             {open && (
                 <div className="md:hidden bg-white/95 backdrop-blur-sm border-t border-primary/10">
                     <nav className="px-6 py-6 flex flex-col gap-4" aria-label="Menú móvil">
-                        <a href="#services" onClick={() => setOpen(false)} className="text-lg font-medium text-primary">Servicios</a>
-                        <a href="#about" onClick={() => setOpen(false)} className="text-lg font-medium text-primary">Quiénes Somos</a>
-                        <a href="#gallery" onClick={() => setOpen(false)} className="text-lg font-medium text-primary">Galería</a>
-                        <a href="#testimonials" onClick={() => setOpen(false)} className="text-lg font-medium text-primary">Testimonios</a>
-                        <a href="#clients" onClick={() => setOpen(false)} className="text-lg font-medium text-primary">Confían en nosotros</a>
-                        <a href="#contact" onClick={() => setOpen(false)} className="text-lg font-medium text-primary">Contacto</a>
+                        {links.map((l) => (
+                            <a key={l.href} href={l.href} onClick={closeMenu} className="text-lg font-medium text-primary">{l.label}</a>
+                        ))}
                     </nav>
                 </div>
             )}
