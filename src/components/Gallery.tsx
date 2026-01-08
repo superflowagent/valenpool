@@ -45,7 +45,7 @@ const Gallery: React.FC = () => {
     const ref = useIntersectionObserver();
 
     return (
-        <section id="gallery" ref={ref} className="py-16 bg-neutral-100 rounded-xl">
+        <section id="gallery" ref={ref} className="py-16 rounded-xl">
             <div className="max-w-7xl mx-auto px-6 py-8">
                 <h2 className="text-3xl font-bold text-primary mb-8">Galería</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -62,7 +62,7 @@ const Gallery: React.FC = () => {
                             <img
                                 src={item.src}
                                 alt={item.title}
-                                loading="lazy"
+                                loading="eager"
                                 decoding="async"
                                 width={1200}
                                 height={800}

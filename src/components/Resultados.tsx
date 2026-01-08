@@ -1,77 +1,49 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slider";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useIntersectionObserver } from "../hooks";
 
-type CompareModule = {
-    ReactCompareSlider: React.ComponentType<{ itemOne: React.ReactNode; itemTwo: React.ReactNode }>;
-    ReactCompareSliderImage: React.ComponentType<React.ImgHTMLAttributes<HTMLImageElement>>;
-};
+const RCS: any = ReactCompareSlider;
 
-// Graceful dynamic-load of `react-compare-slider` so the dev server doesn't fail when
-// the package is not installed in the environment (npm install can fail on some machines).
 const Resultados: React.FC = () => {
     const ref = useIntersectionObserver();
-    const [Cmp, setCmp] = useState<CompareModule | null>(null);
-    const [loadError, setLoadError] = useState(false);
-    const [showAfter, setShowAfter] = useState(false); // fallback toggle
-
-    useEffect(() => {
-        let mounted = true;
-        // Import dynamically on client only
-        if (typeof window === 'undefined') return;
-        const pkg = 'react-compare-slider' as const;
-        import(pkg)
-            .then((mod) => {
-                if (!mounted) return;
-                setCmp({
-                    ReactCompareSlider: mod.ReactCompareSlider,
-                    ReactCompareSliderImage: mod.ReactCompareSliderImage,
-                });
-            })
-            .catch(() => {
-                if (!mounted) return;
-                setLoadError(true);
-            });
-        return () => { mounted = false; };
-    }, []);
 
     return (
-        <section id="results" ref={ref} className="py-16">
-            <div className="max-w-7xl mx-auto px-6 py-8 shadow-2xl rounded-xl bg-white overflow-hidden">
-                <h2 className="text-3xl font-bold text-primary mb-8">Resultados</h2>
+        <section id="results" ref={ref} className="py-16 bg-neutral-100 rounded-xl fade-in-section">
+            <div className="max-w-5xl mx-auto px-4">
+                <div className="text-center mb-6">
+                    <h2 className="text-3xl md:text-4xl font-bold text-primary mb-2">Resultados</h2>
+                    <p className="text-gray-600 mt-1">Transformación inmediata con nuestro servicio de puesta a punto</p>
+                </div>
 
-                <div className="flex justify-center">
-                    <div className="w-full max-w-4xl">
-                        {Cmp && Cmp.ReactCompareSlider && Cmp.ReactCompareSliderImage && !loadError ? (
-                            <Cmp.ReactCompareSlider
-                                itemOne={
-                                    <Cmp.ReactCompareSliderImage
-                                        src="/pool_photos/results/before.png"
-                                        alt="Antes"
-                                        style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
-                                    />
-                                }
-                                itemTwo={
-                                    <Cmp.ReactCompareSliderImage
-                                        src="/pool_photos/results/after.png"
-                                        alt="Después"
-                                        style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
-                                    />
-                                }
-                            />
-                        ) : (
-                            // Fallback simple accessible implementation: toggle between Before/After
-                            <div className="relative w-full bg-gray-50 rounded-md overflow-hidden">
-                                <img src="/pool_photos/results/before.png" alt="Antes" className={`w-full h-auto transition-opacity duration-300 ${showAfter ? 'opacity-0' : 'opacity-100'}`} />
-                                <img src="/pool_photos/results/after.png" alt="Después" className={`absolute inset-0 w-full h-auto top-0 left-0 transition-opacity duration-300 ${showAfter ? 'opacity-100' : 'opacity-0'}`} />
-                                <div className="p-4 flex items-center justify-between">
-                                    <div className="text-sm text-gray-600">Comparador no disponible</div>
-                                    <div className="flex gap-2">
-                                        <button type="button" onClick={() => setShowAfter(false)} className={`px-3 py-1 rounded-md ${!showAfter ? 'bg-primary text-white' : 'bg-white border'}`}>Antes</button>
-                                        <button type="button" onClick={() => setShowAfter(true)} className={`px-3 py-1 rounded-md ${showAfter ? 'bg-primary text-white' : 'bg-white border'}`}>Después</button>
-                                    </div>
+                <div className="overflow-hidden rounded-2xl shadow-2xl">
+                    <div className="w-full h-80 sm:h-96 md:h-130 relative">
+                        <RCS
+                            itemOne={
+                                <ReactCompareSliderImage
+                                    src="/pool_photos/results/after.png"
+                                    alt="Después"
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                />
+                            }
+                            itemTwo={
+                                <ReactCompareSliderImage
+                                    src="/pool_photos/results/before.png"
+                                    alt="Antes"
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                />
+                            }
+                            handle={<div className="handle-outer w-12 h-full flex items-center justify-center cursor-col-resize" tabIndex={0} role="slider" aria-label="Barra comparador">
+                                <div className="chev chev-left absolute w-12 h-12 flex items-center justify-center">
+                                    <ChevronLeft className="w-8 h-8 text-white" aria-hidden />
                                 </div>
-                            </div>
-                        )}
+                                <div className="handle-inner w-2 bg-white h-full rounded-sm shadow-2xl transition-transform duration-200" />
+                                <div className="chev chev-right absolute w-12 h-12 flex items-center justify-center">
+                                    <ChevronRight className="w-8 h-8 text-white" aria-hidden />
+                                </div> 
+                            </div>}
+                            style={{ width: '100%', height: '100%' }}
+                        />
                     </div>
                 </div>
             </div>

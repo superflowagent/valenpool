@@ -30,7 +30,7 @@ const services = [
   },
   {
     title: "Tratamiento químico",
-    text: "Tratamientos químicos profesionales: dosificación y control de productos (desinfectantes, alguicidas y reguladores de pH) para garantizar agua segura y equilibrada.",
+    text: "Dosificación y control profesional de productos químicos para un agua segura y equilibrada.",
     icon: Beaker,
   },
 ];
@@ -42,7 +42,7 @@ const ServicesGrid: React.FC = () => {
     <section
       id="services"
       ref={ref}
-      className="py-16 bg-neutral-100 rounded-xl fade-in-section"
+      className="py-16 rounded-xl fade-in-section"
     >
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-3xl font-bold text-primary mb-8">Servicios</h2>

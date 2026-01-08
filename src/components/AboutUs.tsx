@@ -4,7 +4,7 @@ const AboutUs = () => {
     const ref = useIntersectionObserver();
 
     return (
-        <section id="about" ref={ref} className="py-16 rounded-xl fade-in-section">
+        <section id="about" ref={ref} className="py-16 bg-neutral-100 rounded-xl fade-in-section">
             <div className="max-w-7xl mx-auto px-6">
                 <h2 className="text-3xl font-bold text-primary mb-8">Quiénes somos</h2>
                 <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -27,7 +27,7 @@ const AboutUs = () => {
                         <img
                             src="/pool_photos/Gemini_Generated_Image_10fcwg10fcwg10fc.png"
                             alt="Equipo técnico Valenpool"
-                            loading="lazy"
+                            loading="eager"
                             decoding="async"
                             width={800}
                             height={600}

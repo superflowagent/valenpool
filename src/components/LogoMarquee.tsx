@@ -86,7 +86,7 @@ const LogoMarquee: React.FC<Props> = ({ logos, speed = 80 }) => {
                                     <img
                                         src={logo.src}
                                         alt={logo.alt}
-                                        loading="lazy"
+                                        loading="eager"
                                         decoding="async"
                                         className="max-h-36 max-w-72 object-contain block rounded-xl"
                                     />
@@ -116,7 +116,7 @@ const LogoMarquee: React.FC<Props> = ({ logos, speed = 80 }) => {
                                         alt=""
                                         role="presentation"
                                         aria-hidden="true"
-                                        loading="lazy"
+                                        loading="eager"
                                         decoding="async"
                                         className="max-h-36 max-w-72 object-contain block rounded-xl"
                                     />

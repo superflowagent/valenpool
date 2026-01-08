@@ -6,6 +6,7 @@ import {
   ServicesGrid,
   AboutUs,
   TestimonialsCarousel,
+  Resultados,
   Gallery,
   ContactForm,
   LogoMarquee,
@@ -23,14 +24,13 @@ function App() {
         <Hero />
 
         <ServicesGrid />
-        <AboutUs />
+        <Resultados />
         <Gallery />
+        <AboutUs />
         <TestimonialsCarousel />
 
-        <ContactForm />
-
         {/* Logo Cloud */}
-        <section id="clients" ref={clientsRef} className="py-8 fade-in-section">
+        <section id="clients" ref={clientsRef} className="py-8 bg-neutral-100 rounded-xl fade-in-section">
           <div className="max-w-7xl mx-auto px-6 text-center">
             <h2 className="text-3xl font-bold text-primary mb-8">
               Confían en nosotros
@@ -53,6 +53,8 @@ function App() {
             </div>
           </div>
         </section>
+
+        <ContactForm />
       </main>
 
       <footer className="border-t mt-12">

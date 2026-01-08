@@ -117,7 +117,7 @@ const ContactForm: React.FC = () => {
         <section
             id="contact"
             ref={ref}
-            className="py-16 bg-neutral-100 rounded-xl fade-in-section"
+            className="py-16 rounded-xl fade-in-section"
         >
             <div className="max-w-3xl mx-auto px-6">
                 <h2 className="text-3xl font-bold text-primary mb-6">Contacto</h2>

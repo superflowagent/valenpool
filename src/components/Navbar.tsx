@@ -10,14 +10,16 @@ const Navbar: React.FC = () => {
     const links = useMemo(
         () => [
             { href: "#services", label: "Servicios" },
-            { href: "#about", label: "Quiénes Somos" },
+            { href: "#results", label: "Resultados" },
             { href: "#gallery", label: "Galería" },
+            { href: "#about", label: "Quiénes Somos" },
             { href: "#testimonials", label: "Testimonios" },
             { href: "#clients", label: "Confían en nosotros" },
             { href: "#contact", label: "Contacto" },
         ],
         [],
     );
+
 
     return (
         <header className="sticky top-0 z-50 backdrop-blur-sm bg-white/60 border-b border-primary/10 rounded-b-xl">
@@ -40,11 +42,17 @@ const Navbar: React.FC = () => {
                         className="hidden md:flex gap-8 text-lg font-semibold text-primary"
                         aria-label="Menú principal"
                     >
-                        {links.map((l) => (
-                            <a key={l.href} href={l.href} className="hover:text-primary">
-                                {l.label}
-                            </a>
-                        ))}
+                        {links.map((l) => {
+                            return (
+                                <a
+                                    key={l.href}
+                                    href={l.href}
+                                    className="hover:text-primary"
+                                >
+                                    {l.label}
+                                </a>
+                            );
+                        })}
                     </nav>
 
                     <button
@@ -65,16 +73,18 @@ const Navbar: React.FC = () => {
                         className="px-6 py-6 flex flex-col gap-4"
                         aria-label="Menú móvil"
                     >
-                        {links.map((l) => (
-                            <a
-                                key={l.href}
-                                href={l.href}
-                                onClick={closeMenu}
-                                className="text-lg font-medium text-primary"
-                            >
-                                {l.label}
-                            </a>
-                        ))}
+                        {links.map((l) => {
+                            return (
+                                <a
+                                    key={l.href}
+                                    href={l.href}
+                                    onClick={closeMenu}
+                                    className="text-lg font-medium text-primary"
+                                >
+                                    {l.label}
+                                </a>
+                            );
+                        })}
                     </nav>
                 </div>
             )}
