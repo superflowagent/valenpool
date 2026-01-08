@@ -1,5 +1,5 @@
 import React from "react";
-import { Droplets, Waves, Grid, Wrench, Sun, Users } from "lucide-react";
+import { Droplets, Waves, Grid, Wrench, Sun, Beaker } from "lucide-react";
 import { useIntersectionObserver } from "../hooks";
 
 const services = [
@@ -14,7 +14,7 @@ const services = [
     icon: Waves,
   },
   {
-    title: "Rejuntado y Gresito",
+    title: "Rejuntado y chapado de gresite",
     text: "Renovación estética y funcional: reparación de chapado y borada de alta resistencia.",
     icon: Grid,
   },
@@ -29,9 +29,9 @@ const services = [
     icon: Sun,
   },
   {
-    title: "Mantenimiento Comunitario",
-    text: "Planes personalizados para comunidades de vecinos y centros deportivos en Valencia.",
-    icon: Users,
+    title: "Tratamiento químico",
+    text: "Tratamientos químicos profesionales: dosificación y control de productos (desinfectantes, alguicidas y reguladores de pH) para garantizar agua segura y equilibrada.",
+    icon: Beaker,
   },
 ];
 
