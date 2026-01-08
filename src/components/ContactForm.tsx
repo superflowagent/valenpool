@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import { useState, type ChangeEvent, type FormEvent } from 'react';
 import LocalityAutocomplete from './LocalityAutocomplete';
 import { useIntersectionObserver } from '../hooks';
 
-const ContactForm: React.FC = () => {
+const ContactForm = () => {
     const [form, setForm] = useState({ name: '', phone: '', locality: '', poolType: '', message: '' });
     const [submitted, setSubmitted] = useState(false);
     const ref = useIntersectionObserver();
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         // Validación básica
         if (!form.name || !form.phone || !form.locality || !form.poolType) {

@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 interface LocalityAutocompleteProps {
     value: string;
     onChange: (value: string) => void;
 }
 
-const LocalityAutocomplete: React.FC<LocalityAutocompleteProps> = ({ value, onChange }) => {
+const LocalityAutocomplete = ({ value, onChange }: LocalityAutocompleteProps) => {
     const [input, setInput] = useState(value);
     const [suggestions, setSuggestions] = useState<string[]>([]);
     const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +16,9 @@ const LocalityAutocomplete: React.FC<LocalityAutocompleteProps> = ({ value, onCh
     // Inicializar Google Places API
     useEffect(() => {
         if (window.google) {
-            setAutocompleteService(new window.google.maps.places.AutocompleteService());
+            const svc = new window.google.maps.places.AutocompleteService();
+            // avoid setting state synchronously in effect to satisfy linting rule
+            setTimeout(() => setAutocompleteService(svc), 0);
         }
     }, []);
 

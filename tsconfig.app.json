@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
     // ...
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
       "@/*": [
@@ -8,5 +11,6 @@
       ]
     }
     // ...
-  }
+  },
+  "include": ["src"]
 }

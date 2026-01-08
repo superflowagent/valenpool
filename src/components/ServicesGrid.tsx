@@ -1,4 +1,3 @@
-import React from 'react';
 import { Droplets, Waves, Grid, Wrench, Sun, Users } from 'lucide-react';
 import { useIntersectionObserver } from '../hooks';
 
@@ -35,7 +34,7 @@ const services = [
     },
 ];
 
-const ServicesGrid: React.FC = () => {
+const ServicesGrid = () => {
     const ref = useIntersectionObserver();
 
     return (

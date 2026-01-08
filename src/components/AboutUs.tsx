@@ -1,7 +1,6 @@
-import React from 'react';
 import { useIntersectionObserver } from '../hooks';
 
-const AboutUs: React.FC = () => {
+const AboutUs = () => {
     const ref = useIntersectionObserver();
 
     return (

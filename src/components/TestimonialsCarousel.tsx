@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useIntersectionObserver } from '../hooks';
@@ -16,7 +16,7 @@ const testimonials = [
 
 const AUTO_PLAY_DELAY = 4000;
 
-const TestimonialsCarousel: React.FC = () => {
+const TestimonialsCarousel = () => {
     const [index, setIndex] = useState(0);
     const timeoutRef = useRef<number | null>(null);
     const regionRef = useRef<HTMLDivElement | null>(null);

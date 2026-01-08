@@ -19,13 +19,14 @@ export const useIntersectionObserver = (options: IntersectionObserverInit = {}) 
             ...options,
         });
 
-        if (ref.current && observer) {
-            observer.observe(ref.current);
+        const el = ref.current;
+        if (el && observer) {
+            observer.observe(el);
         }
 
         return () => {
-            if (observer && ref.current) {
-                observer.unobserve(ref.current);
+            if (observer && el) {
+                observer.unobserve(el);
             }
             observer = null;
         };

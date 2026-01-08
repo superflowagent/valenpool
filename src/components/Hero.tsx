@@ -1,7 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 
-const Hero: React.FC = () => {
+const Hero = () => {
     return (
         <section id="hero" className="relative h-[70vh] rounded-xl overflow-hidden">
             <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/pool_photos/galery/pexels-pixabay-221457.jpg')" }} />

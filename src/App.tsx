@@ -1,4 +1,3 @@
-import React from 'react'
 import './App.css'
 import { Navbar, Hero, ServicesGrid, AboutUs, TestimonialsCarousel, Gallery, ContactForm } from './components'
 import { useIntersectionObserver } from './hooks'
@@ -37,7 +36,7 @@ function App() {
                   { src: '/pool_photos/clients/8.png', alt: 'Cliente' },
                   { src: '/pool_photos/clients/9.png', alt: 'Cliente' },
                 ].map((logo, i) => (
-                  <div key={i} className={`w-[300px] h-[170px] md:w-[330px] md:h-[190px] rounded flex items-center justify-center flex-shrink-0 ${i === 7 ? 'bg-black' : ''}`}>
+                  <div key={i} className={`w-[300px] h-[170px] md:w-[330px] md:h-[190px] rounded flex items-center justify-center shrink-0 ${i === 7 ? 'bg-black' : ''}`}>
                     <img src={logo.src} alt={logo.alt} className="max-h-36 max-w-72 object-contain" />
                   </div>
                 ))}
@@ -52,7 +51,7 @@ function App() {
                   { src: '/pool_photos/clients/8.png', alt: 'Cliente' },
                   { src: '/pool_photos/clients/9.png', alt: 'Cliente' },
                 ].map((logo, i) => (
-                  <div key={`dup-${i}`} className={`w-[270px] h-[150px] rounded flex items-center justify-center flex-shrink-0 ${i === 7 ? 'bg-black' : ''}`}>
+                  <div key={`dup-${i}`} className={`w-[270px] h-[150px] rounded flex items-center justify-center shrink-0 ${i === 7 ? 'bg-black' : ''}`}>
                     <img src={logo.src} alt={logo.alt} className="max-h-32 max-w-64 object-contain" />
                   </div>
                 ))}
