@@ -1,0 +1,49 @@
+name: Lighthouse & Accessibility Audit
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [ main ]
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Serve dist
+        run: npx http-server ./dist -p 8080 &
+
+      - name: Wait for server
+        run: |
+          for i in {1..20}; do
+            curl -sSf http://127.0.0.1:8080 && break || sleep 1
+          done
+
+      - name: Pa11y accessibility report
+        run: |
+          mkdir -p reports
+          npx pa11y http://127.0.0.1:8080 --reporter html > reports/pa11y.html || true
+
+      - name: Lighthouse report
+        run: |
+          mkdir -p reports
+          npx lighthouse http://127.0.0.1:8080 --output json --output-path=reports/lighthouse.json --quiet --chrome-flags='--no-sandbox'
+
+      - name: Upload reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-reports
+          path: reports
