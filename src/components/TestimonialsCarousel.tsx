@@ -56,7 +56,7 @@ const TestimonialsCarousel: React.FC = () => {
         <section id="testimonials" ref={ref} className="py-16 bg-white fade-in-section">
             <div className="max-w-4xl mx-auto px-6 text-center">
                 <h2 className="text-3xl font-bold text-primary mb-8">Testimonios</h2>
-                <div className="relative overflow-hidden">
+                <div className="relative overflow-visible">
                     <div className="flex items-center justify-center gap-4">
                         <button
                             onClick={() => setIndex((i) => (i - 1 + testimonials.length) % testimonials.length)}
