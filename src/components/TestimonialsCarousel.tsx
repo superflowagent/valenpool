@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useIntersectionObserver } from '../hooks';
+import { useInView } from '../hooks';
 
 const testimonials = [
     { text: 'Increíble el cambio de mi piscina en La Eliana tras el rejuntado. Profesionales 10/10.', author: 'Carlos M.' },
@@ -20,16 +20,7 @@ const TestimonialsCarousel: React.FC = () => {
     const [index, setIndex] = useState(0);
     const timeoutRef = useRef<number | null>(null);
     const regionRef = useRef<HTMLDivElement | null>(null);
-    const ref = useIntersectionObserver();
-    const [inView, setInView] = useState(false);
-
-    useEffect(() => {
-        const el = ref.current;
-        if (!el) return;
-        const obs = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold: 0.2 });
-        obs.observe(el);
-        return () => obs.disconnect();
-    }, [ref]);
+    const [, inView] = useInView();
 
     useEffect(() => {
         if (!inView) return; // pause autoplay when not visible
