@@ -11,7 +11,7 @@ const Hero = () => {
                         Expertos en el cuidado y mantenimiento de piscinas en <span className="text-primary">Valencia</span>
                     </h1>
                     <p className="mt-4 text-lg text-gray-100">
-                        Ofrecemos un servicio profesional y de confianza para que puedas disfrutar de tu piscina en perfectas condiciones
+                        Servicio profesional y de confianza para que siempre disfrutes de tu piscina en perfectas condiciones
                     </p>
                     <div className="mt-6">
                         <a href="#contact" className="inline-block bg-primary text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:opacity-95">
