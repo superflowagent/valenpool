@@ -54,7 +54,7 @@ const ContactForm: React.FC = () => {
         } finally {
             setSending(false);
         }
-    }; 
+    };
 
     return (
         <section id="contact" ref={ref} className="py-16 bg-neutral-50 rounded-xl fade-in-section">
