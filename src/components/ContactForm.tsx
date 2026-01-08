@@ -6,24 +6,55 @@ import { useIntersectionObserver } from '../hooks';
 const ContactForm: React.FC = () => {
     const [form, setForm] = useState({ name: '', phone: '', locality: '', poolType: '', message: '' });
     const [submitted, setSubmitted] = useState(false);
+    const [sending, setSending] = useState(false);
+    const [resultMessage, setResultMessage] = useState<string | null>(null);
     const ref = useIntersectionObserver();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         // Validación básica
         if (!form.name || !form.phone || !form.locality || !form.poolType) {
             alert('Por favor completa los campos obligatorios.');
             return;
         }
-        // Aquí se podría hacer fetch a un endpoint
-        // ejemplo: fetch('/api/contact', { method: 'POST', body: JSON.stringify(form) })
-        console.log('Solicitud enviada', form);
-        setSubmitted(true);
-    };
+
+        setSending(true);
+        setResultMessage(null);
+
+        try {
+            const formData = new FormData();
+            formData.append('name', form.name);
+            formData.append('phone', form.phone);
+            formData.append('locality', form.locality);
+            formData.append('poolType', form.poolType);
+            formData.append('message', form.message);
+            const accessKey = (import.meta as any)?.env?.VITE_WEB3FORMS_KEY || '48a24b41-f23e-4dac-ad5d-48f5a8a5c1a0';
+            formData.append('access_key', accessKey);
+
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                setSubmitted(true);
+                setResultMessage('Enviado correctamente. ¡Gracias!');
+                setForm({ name: '', phone: '', locality: '', poolType: '', message: '' });
+            } else {
+                setResultMessage(data.message || 'Error al enviar el formulario');
+            }
+        } catch (err) {
+            console.error('Error enviando formulario', err);
+            setResultMessage('Error de red al enviar el formulario');
+        } finally {
+            setSending(false);
+        }
+    }; 
 
     return (
         <section id="contact" ref={ref} className="py-16 bg-neutral-50 rounded-xl fade-in-section">
@@ -87,11 +118,11 @@ const ContactForm: React.FC = () => {
                                     return (
                                         <button
                                             type="submit"
-                                            disabled={!isValid}
-                                            aria-disabled={!isValid}
-                                            className={`w-full text-white font-semibold px-4 py-3 rounded-md ${isValid ? 'bg-primary hover:opacity-95 hover:cursor-pointer' : 'bg-primary/30 cursor-not-allowed'}`}
+                                            disabled={!isValid || sending}
+                                            aria-disabled={!isValid || sending}
+                                            className={`w-full text-white font-semibold px-4 py-3 rounded-md ${isValid && !sending ? 'bg-primary hover:opacity-95 hover:cursor-pointer' : 'bg-primary/30 cursor-not-allowed'}`}
                                         >
-                                            Contáctanos
+                                            {sending ? 'Enviando...' : 'Contáctanos'}
                                         </button>
                                     );
                                 })()}
