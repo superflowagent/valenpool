@@ -25,37 +25,35 @@ function App() {
           <div className="max-w-7xl mx-auto px-6 text-center">
             <h2 className="text-3xl font-bold text-primary mb-8">Confían en nosotros</h2>
             <div className="overflow-hidden">
-              <div className="flex gap-6 animate-marquee">
-                {[
-                  { src: '/pool_photos/clients/1.png', alt: 'Cliente' },
-                  { src: '/pool_photos/clients/2.png', alt: 'Cliente' },
-                  { src: '/pool_photos/clients/3.png', alt: 'Cliente' },
-                  { src: '/pool_photos/clients/4.png', alt: 'Cliente' },
-                  { src: '/pool_photos/clients/5.png', alt: 'Cliente' },
-                  { src: '/pool_photos/clients/6.png', alt: 'Cliente' },
-                  { src: '/pool_photos/clients/7.png', alt: 'Cliente' },
-                  { src: '/pool_photos/clients/8.png', alt: 'Cliente' },
-                  { src: '/pool_photos/clients/9.png', alt: 'Cliente' },
-                ].map((logo, i) => (
-                  <div key={i} className={`w-75 h-42.5 md:w-82.5 md:h-47.5 rounded flex items-center justify-center shrink-0 ${i === 7 ? 'bg-black' : ''}`}>
-                    <img src={logo.src} alt={logo.alt} className="max-h-36 max-w-72 object-contain" />
-                  </div>
-                ))}
-                {[
-                  { src: '/pool_photos/clients/1.png', alt: 'Cliente' },
-                  { src: '/pool_photos/clients/2.png', alt: 'Cliente' },
-                  { src: '/pool_photos/clients/3.png', alt: 'Cliente' },
-                  { src: '/pool_photos/clients/4.png', alt: 'Cliente' },
-                  { src: '/pool_photos/clients/5.png', alt: 'Cliente' },
-                  { src: '/pool_photos/clients/6.png', alt: 'Cliente' },
-                  { src: '/pool_photos/clients/7.png', alt: 'Cliente' },
-                  { src: '/pool_photos/clients/8.png', alt: 'Cliente' },
-                  { src: '/pool_photos/clients/9.png', alt: 'Cliente' },
-                ].map((logo, i) => (
-                  <div key={`dup-${i}`} aria-hidden="true" className={`w-75 h-42.5 md:w-82.5 md:h-47.5 rounded flex items-center justify-center shrink-0 ${i === 7 ? 'bg-black' : ''}`}>
-                    <img src={logo.src} alt="" className="max-h-36 max-w-72 object-contain" />
-                  </div>
-                ))}
+              <div className="flex gap-6 animate-marquee" aria-hidden="false">
+                {(() => {
+                  const logos = [
+                    { src: '/pool_photos/clients/1.png', alt: 'Cliente' },
+                    { src: '/pool_photos/clients/2.png', alt: 'Cliente' },
+                    { src: '/pool_photos/clients/3.png', alt: 'Cliente' },
+                    { src: '/pool_photos/clients/4.png', alt: 'Cliente' },
+                    { src: '/pool_photos/clients/5.png', alt: 'Cliente' },
+                    { src: '/pool_photos/clients/6.png', alt: 'Cliente' },
+                    { src: '/pool_photos/clients/7.png', alt: 'Cliente' },
+                    { src: '/pool_photos/clients/8.png', alt: 'Cliente' },
+                    { src: '/pool_photos/clients/9.png', alt: 'Cliente' },
+                  ];
+
+                  // Render the list twice with identical markup so the animation is seamless.
+                  return logos.concat(logos).map((logo, i) => {
+                    const isDuplicate = i >= logos.length;
+                    const idx = i % logos.length;
+                    return (
+                      <div
+                        key={`logo-${i}`}
+                        className={`w-75 h-42.5 md:w-82.5 md:h-47.5 rounded flex items-center justify-center shrink-0 ${idx === 7 ? 'bg-black' : ''}`}
+                        aria-hidden={isDuplicate}
+                      >
+                        <img src={logo.src} alt={isDuplicate ? '' : logo.alt} className="max-h-36 max-w-72 object-contain" />
+                      </div>
+                    );
+                  });
+                })()}
               </div>
             </div>
           </div>
