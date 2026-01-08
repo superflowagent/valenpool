@@ -63,7 +63,7 @@ const ContactForm: React.FC = () => {
                 <div className="bg-white rounded-xl shadow-md p-6">
                     {submitted ? (
                         <div className="text-center py-8">
-                            <h3 className="text-lg font-semibold">¡Gracias! Hemos recibido tu solicitud.</h3>
+                            <h3 className="text-lg font-semibold">¡Formulario enviado!</h3>
                             <p className="text-sm text-gray-600 mt-2">Nos pondremos en contacto contigo en breve.</p>
                         </div>
                     ) : (
