@@ -27,6 +27,10 @@ const AboutUs = () => {
             <img
               src="/pool_photos/Gemini_Generated_Image_10fcwg10fcwg10fc.png"
               alt="Equipo técnico Valenpool"
+              loading="lazy"
+              decoding="async"
+              width={800}
+              height={600}
               className="rounded-lg shadow-md w-4/5 md:w-3/4 lg:w-2/3 object-contain max-h-105"
             />
           </div>

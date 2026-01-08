@@ -65,6 +65,8 @@ const Gallery: React.FC = () => {
                 alt={item.title}
                 loading="lazy"
                 decoding="async"
+                width={1200}
+                height={800}
                 className="w-full h-full object-cover transition-transform duration-500"
               />
             </div>
