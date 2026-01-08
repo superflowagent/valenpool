@@ -11,7 +11,9 @@ const Navbar: React.FC = () => {
                     <a href="/" aria-label="Valenpool - Inicio">
                         <img src="/pool_photos/ValenPoolLogo.png" alt="Valenpool" className="h-10 w-auto" />
                     </a>
+                </div>
 
+                <div className="flex items-center gap-3">
                     <nav className="hidden md:flex gap-8 text-lg font-semibold text-primary" aria-label="Menú principal">
                         <a href="#services" className="hover:text-primary">Servicios</a>
                         <a href="#about" className="hover:text-primary">Quiénes Somos</a>
@@ -20,9 +22,7 @@ const Navbar: React.FC = () => {
                         <a href="#clients" className="hover:text-primary">Confían en nosotros</a>
                         <a href="#contact" className="hover:text-primary">Contacto</a>
                     </nav>
-                </div>
 
-                <div className="flex items-center gap-3">
                     <button
                         className="inline-flex items-center justify-center rounded-md p-2 text-primary md:hidden"
                         aria-label="Abrir menú"
