@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
     ]), []);
 
     return (
-        <header className="sticky top-0 z-50 backdrop-blur-sm bg-white/60 border-b border-primary/10">
+        <header className="sticky top-0 z-50 backdrop-blur-sm bg-white/60 border-b border-primary/10 rounded-b-xl">
             <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
                 <div className="flex items-center gap-4">
                     <a href="/" aria-label="Valenpool - Inicio">
@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
 
             {/* Mobile menu */}
             {open && (
-                <div className="md:hidden bg-white/95 backdrop-blur-sm border-t border-primary/10">
+                <div className="md:hidden bg-white/95 backdrop-blur-sm border-t border-primary/10 rounded-b-xl overflow-hidden">
                     <nav className="px-6 py-6 flex flex-col gap-4" aria-label="Menú móvil">
                         {links.map((l) => (
                             <a key={l.href} href={l.href} onClick={closeMenu} className="text-lg font-medium text-primary">{l.label}</a>
