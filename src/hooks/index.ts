@@ -1,2 +1,2 @@
-export { useIntersectionObserver } from './useIntersectionObserver';
-export { useInView } from './useInView';
+export { useIntersectionObserver } from "./useIntersectionObserver";
+export { useInView } from "./useInView";
