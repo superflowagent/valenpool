@@ -37,8 +37,8 @@ function App() {
                   { src: '/pool_photos/clients/8.png', alt: 'Cliente' },
                   { src: '/pool_photos/clients/9.png', alt: 'Cliente' },
                 ].map((logo, i) => (
-                  <div key={i} className={`w-75 h-42.5 md:w-82.5 md:h-47.5 rounded flex items-center justify-center shrink-0 ${i === 7 ? 'bg-black' : ''}`}>
-                    <img src={logo.src} alt={logo.alt} className="max-h-36 max-w-72 object-contain" />
+                  <div key={i} className={`w-75 h-42.5 md:w-82.5 md:h-47.5 rounded-xl overflow-hidden flex items-center justify-center shrink-0 ${i === 7 ? 'bg-black' : ''}`}>
+                    <img src={logo.src} alt={logo.alt} className="max-h-36 max-w-72 object-contain rounded-xl" />
                   </div>
                 ))}
                 {[
@@ -52,8 +52,8 @@ function App() {
                   { src: '/pool_photos/clients/8.png', alt: 'Cliente' },
                   { src: '/pool_photos/clients/9.png', alt: 'Cliente' },
                 ].map((logo, i) => (
-                  <div key={`dup-${i}`} className={`w-75 h-42.5 md:w-82.5 md:h-47.5 rounded flex items-center justify-center shrink-0 ${i === 7 ? 'bg-black' : ''}`} aria-hidden="true">
-                    <img src={logo.src} alt={logo.alt} className="max-h-36 max-w-72 object-contain" />
+                  <div key={`dup-${i}`} className={`w-75 h-42.5 md:w-82.5 md:h-47.5 rounded-xl overflow-hidden flex items-center justify-center shrink-0 ${i === 7 ? 'bg-black' : ''}`} aria-hidden="true">
+                    <img src={logo.src} alt={logo.alt} className="max-h-36 max-w-72 object-contain rounded-xl" />
                   </div>
                 ))}
               </div>
