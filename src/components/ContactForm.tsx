@@ -133,9 +133,9 @@ const ContactForm: React.FC = () => {
                                     );
                                 })()}
 
-                            {resultMessage && (
-                                <p className="mt-3 text-sm text-center text-gray-700" role="status">{resultMessage}</p>
-                            )}
+                                {resultMessage && (
+                                    <p className="mt-3 text-sm text-center text-gray-700" role="status">{resultMessage}</p>
+                                )}
                             </div>
                         </form>
                     )}

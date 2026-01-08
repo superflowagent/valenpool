@@ -35,10 +35,12 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ id, value, onChange, option
     }, [open]);
 
     useEffect(() => {
-        const onResize = () => { if (open) {
-            const id = requestAnimationFrame(updateWidth);
-            return () => cancelAnimationFrame(id);
-        } };
+        const onResize = () => {
+            if (open) {
+                const id = requestAnimationFrame(updateWidth);
+                return () => cancelAnimationFrame(id);
+            }
+        };
         window.addEventListener('resize', onResize);
         return () => window.removeEventListener('resize', onResize);
     }, [open]);
