@@ -1,10 +1,10 @@
-name: Image Optimization
+name: "Image Optimization"
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 jobs:
   optimize:
