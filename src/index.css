@@ -118,7 +118,13 @@
     @apply border-border outline-ring/50;
   }
 
+  /* Light mode: set global background to neutral-50 */
   body {
-    @apply bg-background text-foreground;
+    @apply bg-neutral-50 text-foreground;
+  }
+
+  /* Preserve dark mode behavior driven by CSS vars */
+  .dark body {
+    @apply bg-background;
   }
 }

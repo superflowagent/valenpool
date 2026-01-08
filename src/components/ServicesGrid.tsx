@@ -39,7 +39,7 @@ const ServicesGrid: React.FC = () => {
     const ref = useIntersectionObserver();
 
     return (
-        <section id="services" ref={ref} className="py-16 bg-neutral-50 rounded-xl fade-in-section">
+        <section id="services" ref={ref} className="py-16 bg-neutral-100 rounded-xl fade-in-section">
             <div className="max-w-7xl mx-auto px-6">
                 <h2 className="text-3xl font-bold text-primary mb-8">Servicios</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

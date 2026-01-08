@@ -68,7 +68,7 @@ const ContactForm: React.FC = () => {
     };
 
     return (
-        <section id="contact" ref={ref} className="py-16 bg-neutral-50 rounded-xl fade-in-section">
+        <section id="contact" ref={ref} className="py-16 bg-neutral-100 rounded-xl fade-in-section">
             <div className="max-w-3xl mx-auto px-6">
                 <h2 className="text-3xl font-bold text-primary mb-6">Contacto</h2>
                 <div className="bg-white rounded-xl shadow-md p-6">

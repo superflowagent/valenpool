@@ -53,7 +53,7 @@ const TestimonialsCarousel: React.FC = () => {
     const goTo = useCallback((i: number) => setIndex(i), []);
 
     return (
-        <section id="testimonials" ref={ref} className="py-16 bg-white fade-in-section">
+        <section id="testimonials" ref={ref} className="py-16 bg-transparent fade-in-section">
             <div className="max-w-4xl mx-auto px-6 text-center">
                 <h2 className="text-3xl font-bold text-primary mb-8">Testimonios</h2>
                 <div className="relative overflow-visible">
@@ -74,7 +74,7 @@ const TestimonialsCarousel: React.FC = () => {
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: -30 }}
                                     transition={{ duration: 0.5 }}
-                                    className="bg-neutral-50 px-6 py-8 rounded-xl shadow-sm hover:shadow-md transition-shadow text-gray-700 text-base"
+                                    className="bg-neutral-100 px-6 py-8 rounded-xl shadow-sm hover:shadow-md transition-shadow text-gray-700 text-base"
                                 >
                                     <p>"{testimonials[index].text}"</p>
                                     <footer className="mt-4 text-base text-gray-700">- {testimonials[index].author}</footer>
