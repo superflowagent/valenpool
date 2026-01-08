@@ -6,7 +6,7 @@ function App() {
   const clientsRef = useIntersectionObserver();
 
   return (
-    <div className="min-h-screen bg-white text-gray-800">
+    <div className="min-h-screen text-gray-800">
       <Navbar />
 
       <main>
