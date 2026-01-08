@@ -76,7 +76,7 @@ export default defineConfig([
 
 ## Valenpool - Landing Page notes
 
-- Color primario: `#1a3d65`. Usado en botones, títulos y acentos.
+- Color primario: `--primary` (usado como `text-primary`, `bg-primary`). Usado en botones, títulos y acentos.
 - Assets: coloca imágenes en `public/pool_photos/` (ej.: `logo.png`, `hero.jpg`, `depuradora.jpg`).
 - Para añadir logos al "logo cloud" coloca imágenes en `public/pool_photos/logos/` y nómbralas `logo-1.png`, `logo-2.png`, etc. El componente por ahora muestra placeholders; reemplázalos por las imágenes deseadas y ajusta `App.tsx`.
 

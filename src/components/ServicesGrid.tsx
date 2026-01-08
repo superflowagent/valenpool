@@ -1,3 +1,4 @@
+import React from 'react';
 import { Droplets, Waves, Grid, Wrench, Sun, Users } from 'lucide-react';
 import { useIntersectionObserver } from '../hooks';
 
@@ -34,25 +35,25 @@ const services = [
     },
 ];
 
-const ServicesGrid = () => {
+const ServicesGrid: React.FC = () => {
     const ref = useIntersectionObserver();
 
     return (
         <section id="services" ref={ref} className="py-16 bg-neutral-50 rounded-xl fade-in-section">
             <div className="max-w-7xl mx-auto px-6">
-                <h2 className="text-3xl font-bold text-[#1a3d65] mb-8">Servicios</h2>
+                <h2 className="text-3xl font-bold text-primary mb-8">Servicios</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {services.map((s) => {
                         const Icon = s.icon;
                         return (
-                            <article key={s.title} className="bg-white rounded-lg p-6 border border-transparent hover:shadow-lg hover:border-[#1a3d65] transition-transform transform hover:-translate-y-1 cursor-default select-none">
+                            <article key={s.title} className="bg-white rounded-lg p-6 border border-transparent hover:shadow-lg hover:border-primary transition-transform transform hover:-translate-y-1 cursor-default select-none">
                                 <div className="flex items-center gap-4">
-                                    <div className="p-3 rounded-md bg-[#1a3d65]/10 text-[#1a3d65]">
+                                    <div className="p-3 rounded-md bg-primary/10 text-primary">
                                         <Icon className="w-6 h-6" />
                                     </div>
                                     <h3 className="text-lg font-semibold">{s.title}</h3>
                                 </div>
-                                <p className="mt-3 text-gray-600">{s.text}</p>
+                                <p className="mt-3 text-gray-700 text-base">{s.text}</p>
                             </article>
                         );
                     })}

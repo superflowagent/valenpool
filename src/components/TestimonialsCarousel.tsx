@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useIntersectionObserver } from '../hooks';
@@ -16,7 +16,7 @@ const testimonials = [
 
 const AUTO_PLAY_DELAY = 4000;
 
-const TestimonialsCarousel = () => {
+const TestimonialsCarousel: React.FC = () => {
     const [index, setIndex] = useState(0);
     const timeoutRef = useRef<number | null>(null);
     const regionRef = useRef<HTMLDivElement | null>(null);
@@ -48,7 +48,7 @@ const TestimonialsCarousel = () => {
     return (
         <section id="testimonials" ref={ref} className="py-16 bg-white fade-in-section">
             <div className="max-w-4xl mx-auto px-6 text-center">
-                <h2 className="text-3xl font-bold text-[#1a3d65] mb-8">Testimonios</h2>
+                <h2 className="text-3xl font-bold text-primary mb-8">Testimonios</h2>
                 <div className="relative overflow-hidden">
                     <div className="flex items-center justify-center gap-4">
                         <button
@@ -56,7 +56,7 @@ const TestimonialsCarousel = () => {
                             className="p-2 hover:bg-gray-200 rounded-full transition-colors cursor-pointer"
                             aria-label="Testimonio anterior"
                         >
-                            <ChevronLeft className="w-6 h-6 text-[#1a3d65]" />
+                            <ChevronLeft className="w-6 h-6 text-primary" />
                         </button>
 
                         <div className="flex-1">
@@ -67,10 +67,10 @@ const TestimonialsCarousel = () => {
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: -30 }}
                                     transition={{ duration: 0.5 }}
-                                    className="bg-neutral-50 px-6 py-8 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+                                    className="bg-neutral-50 px-6 py-8 rounded-xl shadow-sm hover:shadow-md transition-shadow text-gray-700 text-base"
                                 >
-                                    <p className="text-gray-800 text-lg">"{testimonials[index].text}"</p>
-                                    <footer className="mt-4 text-sm text-gray-600">- {testimonials[index].author}</footer>
+                                    <p>"{testimonials[index].text}"</p>
+                                    <footer className="mt-4 text-base text-gray-700">- {testimonials[index].author}</footer>
                                 </motion.blockquote>
                             </AnimatePresence>
                         </div>
@@ -80,7 +80,7 @@ const TestimonialsCarousel = () => {
                             className="p-2 hover:bg-gray-200 rounded-full transition-colors cursor-pointer"
                             aria-label="Siguiente testimonio"
                         >
-                            <ChevronRight className="w-6 h-6 text-[#1a3d65]" />
+                            <ChevronRight className="w-6 h-6 text-primary" />
                         </button>
                     </div>
                 </div>
@@ -93,7 +93,7 @@ const TestimonialsCarousel = () => {
                             aria-selected={i === index}
                             aria-label={`Ir al testimonio ${i + 1}`}
                             onClick={() => goTo(i)}
-                            className={`w-3 h-3 rounded-full ${i === index ? 'bg-[#1a3d65]' : 'bg-gray-300'} focus:outline-none`}
+                            className={`w-3 h-3 rounded-full ${i === index ? 'bg-primary' : 'bg-gray-300'} focus:outline-none`}
                         />
                     ))}
                 </div>

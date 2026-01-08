@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useIntersectionObserver } from '../hooks';
 
 const gallery = [
@@ -40,21 +40,21 @@ const gallery = [
     },
 ];
 
-const Gallery = () => {
+const Gallery: React.FC = () => {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     const ref = useIntersectionObserver();
 
     return (
-        <section id="gallery" ref={ref} className="py-16 bg-neutral-50 rounded-xl">
+        <section id="gallery" className="py-16 bg-neutral-50 rounded-xl">
             <div className="max-w-7xl mx-auto px-6 py-8">
-                <h2 className="text-3xl font-bold text-[#1a3d65] mb-8">Galería</h2>
+                <h2 className="text-3xl font-bold text-primary mb-8">Galería</h2>
                 <div className="grid grid-cols-3 gap-6">
                     {gallery.map((item, index) => (
                         <div
                             key={index}
                             onMouseEnter={() => setHoveredIndex(index)}
                             onMouseLeave={() => setHoveredIndex(null)}
-                            className={`relative overflow-hidden rounded-xl cursor-pointer transition-all duration-500 h-[350px] ${hoveredIndex !== null && hoveredIndex !== index ? 'scale-95 opacity-70' : 'scale-100 opacity-100'
+                            className={`relative overflow-hidden rounded-xl cursor-pointer transition-all duration-500 h-87.5 ${hoveredIndex !== null && hoveredIndex !== index ? 'scale-95 opacity-70' : 'scale-100 opacity-100'
                                 } ${hoveredIndex === index ? 'scale-110 z-10' : ''}`}
                         >
                             <img
