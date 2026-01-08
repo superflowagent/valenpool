@@ -71,11 +71,11 @@ function App() {
 
       <style>{`
         @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-        .animate-marquee{display:flex;gap:1.5rem;animation:marquee 20s linear infinite;min-width:max-content;will-change:transform}
+        .animate-marquee{display:flex;gap:1.5rem;animation:marquee 40s linear infinite;min-width:max-content;will-change:transform}
         .animate-marquee > div{flex:0 0 auto}
         @media (max-width: 640px) {
           /* Ajustado para que no sea excesivamente rápido en móviles */
-          .animate-marquee{animation-duration:8s}
+          .animate-marquee{animation-duration:12s}
         }
       `}</style>
     </div>
