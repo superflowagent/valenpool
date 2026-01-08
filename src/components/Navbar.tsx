@@ -27,6 +27,9 @@ const Navbar: React.FC = () => {
             <img
               src="/pool_photos/ValenPoolLogo.png"
               alt="Valenpool"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
               className="h-10 w-auto"
             />
           </a>

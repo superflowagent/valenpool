@@ -12,36 +12,30 @@ const LocalityAutocomplete: React.FC<LocalityAutocompleteProps> = ({
   const [municipalities, setMunicipalities] = useState<string[] | null>(null);
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  // Load CSV once from public folder with basic error handling
-  useEffect(() => {
-    let mounted = true;
-    fetch("/pool_photos/municipios_vlc.csv")
-      .then((r) => r.text())
-      .then((text) => {
-        if (!mounted) return;
-        const lines = text
-          .split(/\r?\n/)
-          .map((l) => l.trim())
-          .filter(Boolean);
-        setMunicipalities(lines);
-        setError(null);
-      })
-      .catch(() => {
-        // avoid noisy logs in production
-        if (import.meta.env.DEV) console.error("Failed to load municipios CSV");
-        setError("No se pudieron cargar las localidades");
-        setMunicipalities([]);
-      })
-      .finally(() => setLoading(false));
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  // Lazy-load CSV on first focus to avoid fetching large static assets on initial load
+  const fetchMunicipalities = async () => {
+    if (municipalities !== null || loading) return;
+    setLoading(true);
+    try {
+      const r = await fetch("/pool_photos/municipios_vlc.csv");
+      const text = await r.text();
+      const lines = text.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+      setMunicipalities(lines);
+      setError(null);
+    } catch (err) {
+      if (import.meta.env.DEV) console.error("Failed to load municipios CSV", err);
+      setError("No se pudieron cargar las localidades");
+      setMunicipalities([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -159,7 +153,7 @@ const LocalityAutocomplete: React.FC<LocalityAutocompleteProps> = ({
               setIsOpen(false);
             }
           }}
-          onFocus={() => suggestions.length > 0 && setIsOpen(true)}
+          onFocus={async () => { await fetchMunicipalities(); if (suggestions.length > 0) setIsOpen(true); }}
           placeholder={
             loading ? "Cargando localidades…" : "Busca tu localidad..."
           }

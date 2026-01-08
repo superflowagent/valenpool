@@ -19,7 +19,7 @@ function App() {
     <div className="min-h-screen bg-neutral-50 text-primary">
       <Navbar />
 
-      <main>
+      <main id="main">
         <Hero />
 
         <ServicesGrid />

@@ -245,6 +245,7 @@ const ContactForm: React.FC = () => {
                   <p
                     className="mt-3 text-sm text-center text-gray-700"
                     role="status"
+                    aria-live="polite"
                   >
                     {resultMessage}
                   </p>
