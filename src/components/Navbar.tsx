@@ -11,7 +11,9 @@ const Navbar = () => {
                     <a href="/" aria-label="Valenpool - Inicio">
                         <img src="/pool_photos/ValenPoolLogo.png" alt="Valenpool" className="h-10 w-auto" />
                     </a>
+                </div>
 
+                <div className="flex items-center gap-3">
                     <nav className="hidden md:flex gap-8 text-lg font-semibold text-gray-700" aria-label="Menú principal">
                         <a href="#services" className="hover:text-[#1a3d65]">Servicios</a>
                         <a href="#about" className="hover:text-[#1a3d65]">Quiénes Somos</a>
@@ -20,9 +22,7 @@ const Navbar = () => {
                         <a href="#clients" className="hover:text-[#1a3d65]">Confían en nosotros</a>
                         <a href="#contact" className="hover:text-[#1a3d65]">Contacto</a>
                     </nav>
-                </div>
 
-                <div className="flex items-center gap-3">
                     <button
                         className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 md:hidden"
                         aria-label="Abrir menú"
