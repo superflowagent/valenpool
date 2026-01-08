@@ -20,7 +20,7 @@ const TestimonialsCarousel: React.FC = () => {
     const [index, setIndex] = useState(0);
     const timeoutRef = useRef<number | null>(null);
     const regionRef = useRef<HTMLDivElement | null>(null);
-    const [, inView] = useInView();
+    const [ref, inView] = useInView();
 
     useEffect(() => {
         if (!inView) return; // pause autoplay when not visible
