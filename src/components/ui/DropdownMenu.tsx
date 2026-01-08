@@ -28,11 +28,17 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ id, value, onChange, option
     };
 
     useEffect(() => {
-        if (open) updateWidth();
+        if (open) {
+            const id = requestAnimationFrame(updateWidth);
+            return () => cancelAnimationFrame(id);
+        }
     }, [open]);
 
     useEffect(() => {
-        const onResize = () => { if (open) updateWidth(); };
+        const onResize = () => { if (open) {
+            const id = requestAnimationFrame(updateWidth);
+            return () => cancelAnimationFrame(id);
+        } };
         window.addEventListener('resize', onResize);
         return () => window.removeEventListener('resize', onResize);
     }, [open]);
@@ -46,6 +52,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ id, value, onChange, option
                     type="button"
                     aria-haspopup="menu"
                     aria-expanded={open}
+                    aria-required={required}
                     className={`w-full rounded-md border border-gray-200 bg-white px-3 py-2 pr-4 text-sm shadow-sm focus:border-primary focus:ring focus:ring-primary/30 h-10 text-foreground flex items-center justify-between`}
                 >
                     <span className={`${selected ? '' : 'text-gray-400'}`}>
@@ -56,7 +63,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ id, value, onChange, option
             </DropdownMenuPrimitive.Trigger>
 
             <DropdownMenuPrimitive.Content sideOffset={4} align="start" style={contentStyle} className="z-50 mt-1 rounded-md border bg-white p-0 shadow-lg max-h-60 overflow-y-auto">
-                {options.map((o, i) => (
+                {options.map((o) => (
                     <DropdownMenuPrimitive.Item
                         key={o.value}
                         onSelect={() => onChange(o.value)}

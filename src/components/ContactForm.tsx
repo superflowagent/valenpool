@@ -32,7 +32,7 @@ const ContactForm: React.FC = () => {
             formData.append('locality', form.locality);
             formData.append('poolType', form.poolType);
             formData.append('message', form.message);
-            const accessKey = (import.meta as any)?.env?.VITE_WEB3FORMS_KEY || '7c31f864-c88f-4457-8ca5-31a3f3cfce1d';
+            const accessKey = (import.meta as { env?: { VITE_WEB3FORMS_KEY?: string } })?.env?.VITE_WEB3FORMS_KEY || '7c31f864-c88f-4457-8ca5-31a3f3cfce1d';
             formData.append('access_key', accessKey);
 
             const response = await fetch('https://api.web3forms.com/submit', {
@@ -48,7 +48,7 @@ const ContactForm: React.FC = () => {
             } else {
                 setResultMessage(data.message || 'Error al enviar el formulario');
             }
-        } catch (err) {
+        } catch (err: unknown) {
             console.error('Error enviando formulario', err);
             setResultMessage('Error de red al enviar el formulario');
         } finally {
@@ -126,6 +126,10 @@ const ContactForm: React.FC = () => {
                                         </button>
                                     );
                                 })()}
+
+                            {resultMessage && (
+                                <p className="mt-3 text-sm text-center text-gray-700" role="status">{resultMessage}</p>
+                            )}
                             </div>
                         </form>
                     )}

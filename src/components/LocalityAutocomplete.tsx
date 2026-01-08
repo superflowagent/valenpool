@@ -9,7 +9,7 @@ const LocalityAutocomplete: React.FC<LocalityAutocompleteProps> = ({ value, onCh
     const [municipalities, setMunicipalities] = useState<string[] | null>(null);
     const [suggestions, setSuggestions] = useState<string[]>([]);
     const [isOpen, setIsOpen] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const dropdownRef = useRef<HTMLDivElement | null>(null);
     const inputRef = useRef<HTMLInputElement | null>(null);
@@ -17,7 +17,6 @@ const LocalityAutocomplete: React.FC<LocalityAutocompleteProps> = ({ value, onCh
     useEffect(() => {
         // Load CSV once from public folder
         let mounted = true;
-        setLoading(true);
         fetch('/pool_photos/municipios_vlc.csv')
             .then((r) => r.text())
             .then((text) => {
