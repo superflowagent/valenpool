@@ -22,6 +22,14 @@ const TestimonialsCarousel: React.FC = () => {
     const regionRef = useRef<HTMLDivElement | null>(null);
     const [ref, inView] = useInView();
 
+    // Ensure the fade-in animation class is added when the section first becomes visible
+    useEffect(() => {
+        const el = ref.current;
+        if (inView && el) {
+            if (!el.classList.contains('fade-in-visible')) el.classList.add('fade-in-visible');
+        }
+    }, [inView, ref]);
+
     useEffect(() => {
         if (!inView) return; // pause autoplay when not visible
         if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
