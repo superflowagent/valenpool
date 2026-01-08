@@ -72,6 +72,10 @@ function App() {
       <style>{`
         @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
         .animate-marquee{display:flex;gap:1.5rem;animation:marquee 20s linear infinite}
+        @media (max-width: 640px) {
+          /* En móvil aceleramos la animación */
+          .animate-marquee{animation-duration:1.5s}
+        }
       `}</style>
     </div>
   )

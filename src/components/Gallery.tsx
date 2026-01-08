@@ -48,7 +48,7 @@ const Gallery: React.FC = () => {
         <section id="gallery" className="py-16 bg-neutral-50 rounded-xl">
             <div className="max-w-7xl mx-auto px-6 py-8">
                 <h2 className="text-3xl font-bold text-primary mb-8">Galería</h2>
-                <div className="grid grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {gallery.map((item, index) => (
                         <div
                             key={index}
