@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useIntersectionObserver } from "../hooks";
 
+type CompareModule = {
+    ReactCompareSlider: React.ComponentType<{ itemOne: React.ReactNode; itemTwo: React.ReactNode }>;
+    ReactCompareSliderImage: React.ComponentType<React.ImgHTMLAttributes<HTMLImageElement>>;
+};
+
 // Graceful dynamic-load of `react-compare-slider` so the dev server doesn't fail when
 // the package is not installed in the environment (npm install can fail on some machines).
 const Resultados: React.FC = () => {
     const ref = useIntersectionObserver();
-    const [Cmp, setCmp] = useState<any | null>(null);
+    const [Cmp, setCmp] = useState<CompareModule | null>(null);
     const [loadError, setLoadError] = useState(false);
     const [showAfter, setShowAfter] = useState(false); // fallback toggle
 
@@ -13,7 +18,8 @@ const Resultados: React.FC = () => {
         let mounted = true;
         // Import dynamically on client only
         if (typeof window === 'undefined') return;
-        import('react-compare-slider')
+        const pkg = 'react-compare-slider' as const;
+        import(pkg)
             .then((mod) => {
                 if (!mounted) return;
                 setCmp({

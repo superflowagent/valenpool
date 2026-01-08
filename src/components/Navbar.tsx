@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
                             alt="Valenpool"
                             loading="eager"
                             decoding="async"
-                            fetchpriority="high"
+                            fetchPriority="high"
                             className="h-10 w-auto"
                         />
                     </a>
