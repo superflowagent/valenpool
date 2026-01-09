@@ -40,7 +40,7 @@ const Resultados: React.FC = () => {
                                 <div className="handle-inner w-2 bg-white h-full rounded-sm shadow-2xl transition-transform duration-200" />
                                 <div className="chev chev-right absolute w-12 h-12 flex items-center justify-center">
                                     <ChevronRight className="w-8 h-8 text-white" aria-hidden />
-                                </div> 
+                                </div>
                             </div>}
                             style={{ width: '100%', height: '100%' }}
                         />

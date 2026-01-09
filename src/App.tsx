@@ -42,12 +42,14 @@ function App() {
                   { src: "/pool_photos/clients/1.png", alt: "Cliente" },
                   { src: "/pool_photos/clients/2.png", alt: "Cliente" },
                   { src: "/pool_photos/clients/3.png", alt: "Cliente" },
-                  { src: "/pool_photos/clients/4.png", alt: "Cliente" },
+                  { src: "/pool_photos/clients/4.jpg", alt: "Cliente" },
                   { src: "/pool_photos/clients/5.png", alt: "Cliente" },
                   { src: "/pool_photos/clients/6.png", alt: "Cliente" },
                   { src: "/pool_photos/clients/7.png", alt: "Cliente" },
                   { src: "/pool_photos/clients/8.png", alt: "Cliente" },
-                  { src: "/pool_photos/clients/9.png", alt: "Cliente" },
+                  { src: "/pool_photos/clients/9.avif", alt: "Cliente" },
+                  { src: "/pool_photos/clients/10.png", alt: "Cliente" },
+                  { src: "/pool_photos/clients/11.jpg", alt: "Cliente" },
                 ]}
               />
             </div>

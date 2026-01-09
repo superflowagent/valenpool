@@ -71,58 +71,42 @@ const LogoMarquee: React.FC<Props> = ({ logos, speed = 80 }) => {
                     style={{ willChange: "transform" }}
                 >
                     <div ref={trackRef} className="flex gap-6">
-                        {logos.map((logo, i) => {
-                            const extraClass =
-                                logo.src.endsWith("/7.png") || logo.src.endsWith("/8.png")
-                                    ? "bg-neutral-300"
-                                    : i === 7
-                                        ? "bg-black"
-                                        : "";
-                            return (
-                                <div
-                                    key={`logo-${i}`}
-                                    className={`w-75 h-42.5 md:w-82.5 md:h-47.5 rounded-xl overflow-hidden flex items-center justify-center shrink-0 ${extraClass}`}
-                                >
-                                    <img
-                                        src={logo.src}
-                                        alt={logo.alt}
-                                        loading="eager"
-                                        decoding="async"
-                                        className="max-h-36 max-w-72 object-contain block rounded-xl"
-                                    />
-                                </div>
-                            );
-                        })}
+                        {logos.map((logo, i) => (
+                            <div
+                                key={`logo-${i}`}
+                                className="w-75 h-42.5 md:w-82.5 md:h-47.5 rounded-xl overflow-hidden flex items-center justify-center shrink-0"
+                            >
+                                <img
+                                    src={logo.src}
+                                    alt={logo.alt}
+                                    loading="eager"
+                                    decoding="async"
+                                    className="max-h-36 max-w-72 object-contain block rounded-xl"
+                                />
+                            </div>
+                        ))}
                     </div>
 
                     {/* duplicate for seamless loop, hidden from AT */}
                     <div aria-hidden="true" className="flex gap-6">
-                        {logos.map((logo, i) => {
-                            const extraClass =
-                                logo.src.endsWith("/7.png") || logo.src.endsWith("/8.png")
-                                    ? "bg-neutral-300"
-                                    : i === 7
-                                        ? "bg-black"
-                                        : "";
-                            return (
-                                <div
-                                    key={`logo-dup-${i}`}
-                                    className={`w-75 h-42.5 md:w-82.5 md:h-47.5 rounded-xl overflow-hidden flex items-center justify-center shrink-0 ${extraClass}`}
-                                    aria-hidden="true"
+                        {logos.map((logo, i) => (
+                            <div
+                                key={`logo-dup-${i}`}
+                                className="w-75 h-42.5 md:w-82.5 md:h-47.5 rounded-xl overflow-hidden flex items-center justify-center shrink-0"
+                                aria-hidden="true"
+                                role="presentation"
+                            >
+                                <img
+                                    src={logo.src}
+                                    alt=""
                                     role="presentation"
-                                >
-                                    <img
-                                        src={logo.src}
-                                        alt=""
-                                        role="presentation"
-                                        aria-hidden="true"
-                                        loading="eager"
-                                        decoding="async"
-                                        className="max-h-36 max-w-72 object-contain block rounded-xl"
-                                    />
-                                </div>
-                            );
-                        })}
+                                    aria-hidden="true"
+                                    loading="eager"
+                                    decoding="async"
+                                    className="max-h-36 max-w-72 object-contain block rounded-xl"
+                                />
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

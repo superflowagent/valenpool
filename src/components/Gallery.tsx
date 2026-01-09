@@ -55,8 +55,8 @@ const Gallery: React.FC = () => {
                             onMouseEnter={() => setHoveredIndex(index)}
                             onMouseLeave={() => setHoveredIndex(null)}
                             className={`relative overflow-hidden rounded-xl cursor-pointer transition-all duration-500 h-87.5 ${hoveredIndex !== null && hoveredIndex !== index
-                                    ? "scale-95 opacity-70"
-                                    : "scale-100 opacity-100"
+                                ? "scale-95 opacity-70"
+                                : "scale-100 opacity-100"
                                 } ${hoveredIndex === index ? "scale-110 z-10" : ""}`}
                         >
                             <img

@@ -5,6 +5,6 @@ export { default as AboutUs } from "./AboutUs";
 export { default as TestimonialsCarousel } from "./TestimonialsCarousel";
 export { default as Resultados } from "./Resultados";
 export { default as Gallery } from "./Gallery";
-export { default as ContactForm } from "./ContactForm"; 
+export { default as ContactForm } from "./ContactForm";
 export { default as LocalityAutocomplete } from "./LocalityAutocomplete";
 export { default as LogoMarquee } from "./LogoMarquee";
